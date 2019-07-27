@@ -17,16 +17,13 @@
                     <programs>
                         <program>
                             <mainClass>Main</mainClass>
-                            <name>name</name>
+                            <name>worker</name>
                         </program>
                     </programs>
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>assemble</goal>
-                        </goals>
+                        <phase>package</phase><goals><goal>assemble</goal></goals>
                     </execution>
                 </executions>
             </plugin>
