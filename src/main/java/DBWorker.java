@@ -1,3 +1,5 @@
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.TimeZone;
 
@@ -8,15 +10,25 @@ public class DBWorker {
     private static final String USER = "wtpbskgebkbagn";
     private final String PASS = "e9939d6bc247e26f749d09d02a37e75970c6c39f09b67411b0a70cd8f11776fe";
     private static String url = "jdbc:postgresql://ec2-54-217-234-157.eu-west-1.compute.amazonaws.com:5432/d8ra2j3ikmj92d?user=wtpbskgebkbagn&password=e9939d6bc247e26f749d09d02a37e75970c6c39f09b67411b0a70cd8f11776fe&?ssl=true&sslmode=require";
-//jdbc:mysql://localhost:3306/mydbtest?serverTimezone=" + TimeZone.getDefault().getID()+"&useSSL=false
+
     private Connection conn;
+
+    private static Connection getConnection() throws URISyntaxException, SQLException {
+        URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+
+        return DriverManager.getConnection(dbUrl, username, password);
+    }
     private Statement stat;
 
     public void connect()
     {
         try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
+            conn = getConnection();
+        } catch (SQLException | URISyntaxException e) {
             e.printStackTrace();
         }
     }
