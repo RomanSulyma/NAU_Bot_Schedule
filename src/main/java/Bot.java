@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
 
-    private static List<User> list = new ArrayList<>();
+    private static List<User> list = new ArrayList<User>();
 
     public void onUpdateReceived(Update update) {
 

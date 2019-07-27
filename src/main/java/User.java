@@ -27,7 +27,7 @@ public class User {
     private String subgroup;
     private String day_of_week;
 
-    private  ArrayList<KeyboardRow> keyboard = new ArrayList<>();
+    private  ArrayList<KeyboardRow> keyboard = new ArrayList<KeyboardRow>();
     private KeyboardRow keyboardFirstRow = new KeyboardRow();
     private  KeyboardRow keyboardSecondRow = new KeyboardRow();
     private KeyboardRow keyboardThirdRow = new KeyboardRow();
@@ -266,7 +266,7 @@ public class User {
                 bot.sendMsg("Отсутствует расписание для данного департамента :(",chat_id,replyKeyBoardMarkUp);
                 return null;
             }
-            List<String> list = new ArrayList<>();
+            List<String> list = new ArrayList<String>();
             Element tableNAU = page.select(param).first();
 
                     Elements names = tableNAU.select("option");
