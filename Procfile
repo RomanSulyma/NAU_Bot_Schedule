@@ -1,1 +1,1 @@
-worker: sh target/classes/Main
+worker: sh target/bin/workerBot

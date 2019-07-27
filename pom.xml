@@ -17,7 +17,7 @@
                     <programs>
                         <program>
                             <mainClass>Main</mainClass>
-                            <name>worker</name>
+                            <name>workerBot</name>
                         </program>
                     </programs>
                 </configuration>
