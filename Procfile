@@ -1,1 +1,1 @@
-web: sh target/classes/Main
+worker: sh target/classes/Main
