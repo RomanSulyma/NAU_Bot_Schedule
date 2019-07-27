@@ -1,1 +1,1 @@
-web: target/classes:target/dependency/* Main
+worker: sh target/bin/workerBot
