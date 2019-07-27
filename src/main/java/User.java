@@ -293,8 +293,8 @@ public class User {
             long week = 1000 * 60 * 60 * 24 * 7; //кол-во миллисекунд в одной неделе
             delay %= week * 2; //найдем остаток от деления разницы на две недели
 
-            if (delay <= week) System.out.println(number_of_week = 1); //если разница меньше либо равна одной неделе, то это первая неделя
-            else System.out.println(number_of_week = 2); //иначе вторая
+            if (delay <= week) number_of_week = 1; //если разница меньше либо равна одной неделе, то это первая неделя
+            else number_of_week = 2; //иначе вторая
 
             Calendar c = Calendar.getInstance();
             int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
@@ -316,7 +316,9 @@ public class User {
                     break;
 
                 default:
-                    break;
+                    bot.sendMsg("На сегодня нету пар :)",chat_id,replyKeyBoardMarkUp);
+                    trigger = 0;
+                    return;
             }
             trigger = 0;
             DBresult();
@@ -334,8 +336,8 @@ public class User {
             ResultSet res = DB.execute(s);
             try {
                 while (res.next()) {
-                    if (!res.getString(7).isEmpty())
-                        result = result + res.getInt(6) + " Пара: \n" + res.getString(7) + "\n" + "\n";
+                    if (!res.getString(6).isEmpty())
+                        result = result + res.getInt(5) + " Пара: \n" + res.getString(6) + "\n" + "\n";
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -347,22 +349,7 @@ public class User {
 
         public void sendALL(String message)
         {
-           /* String pass = "";
-            try {
-                File file = new File("src/main/resources/Codes");
-                FileReader fr= new FileReader(file);
-                Scanner scan = new Scanner(file);
-                pass = scan.nextLine();
-                fr.close();
-                scan.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
-
             if(chat_id == 342252437) {
-                //message = message.replace(pass,"");
                 message = message.replace("sendall","");
 
                 DBWorker DB = new DBWorker();
